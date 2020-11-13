@@ -52,6 +52,17 @@ public class Sprite extends SimpleApp{
 		 * the coordinates of mouse is copied to this.x and this.y
 		 * which is then copied to screen.drawImage on line 48
 		 */
+		
+		
+		/*Formula for calculating gradient
+															 	   
+		*		     y2 - y1 															  
+		* m = ---------------------
+		*		 	 x2 - x1
+				
+		*While loop to calculate points that lie on the line and draw Car at those position
+		*Maybe every 5 pixels? or 10 pixels?
+		*/
 	}
 	
 	//Method happens when Mouse hovers over
