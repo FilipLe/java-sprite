@@ -15,6 +15,8 @@ public class Sprite extends SimpleApp{
 	double n = 100;
 	double dx;
 	double dy;
+	int destinationX;
+	int destinationY;
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -50,10 +52,15 @@ public class Sprite extends SimpleApp{
 		//-->It moves to where the mouse is
 		//screen.drawImage(car, x, y);
 		
-		
-		x += dx;
-		y += dy;
 		screen.drawImage(car, (int)(x), (int)(y));
+		//Since this repeats every frame, we do not need a while loop
+		if(x!=destinationX && y!=destinationY) 
+		{
+			//So while it hasn't reached the destination (mouse click)
+			//keep on moving
+			x += dx;
+			y += dy;
+		}
 		
 		
 		/*How this works
@@ -103,6 +110,10 @@ public class Sprite extends SimpleApp{
 		//this.y refers to y on line 13
 		//y refers to (int y) in line 77
 		//this.y = y;
+		
+		//Store these values so when target later reaches these, stop target
+		destinationX = x;
+		destinationY = y;
 		System.out.println("Mouse click: " + x + "," + y);
 	}
 }
