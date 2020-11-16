@@ -12,6 +12,9 @@ public class Sprite extends SimpleApp{
 	Image car;
 	int x = 0;
 	int y = 0;
+	double n = 100;
+	double dx;
+	double dy;
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -45,7 +48,13 @@ public class Sprite extends SimpleApp{
 				
 		//Display car sprite on screen at (x,y) of mouse
 		//-->It moves to where the mouse is
-		screen.drawImage(car, x, y);
+		//screen.drawImage(car, x, y);
+		
+		
+		x += dx;
+		y += dy;
+		screen.drawImage(car, (int)(x), (int)(y));
+		
 		
 		/*How this works
 		 * When we click on mouse --> onMouseClick(x,y)
@@ -62,6 +71,8 @@ public class Sprite extends SimpleApp{
 				
 		*While loop to calculate points that lie on the line and draw Car at those position
 		*Maybe every 5 pixels? or 10 pixels?
+		*
+		*Points that Lie on line: y = mx + b
 		*/
 	}
 	
@@ -74,13 +85,24 @@ public class Sprite extends SimpleApp{
 	//Method happens only when mouse is clicked
 	public void onMouseClick(int x, int y) 
 	{
+		//Gradient = Change in y over change in x
+		
+		//Calculating change in x
+		dx = (x - this.x)/n;
+		//divide by n --> draw x every n pixels
+		//n = 5 --> for every 5 pixels travelled, draw x
+		
+		//Calculating change in y
+		dy = (y - this.y)/n;
+		
+		
 		//this.x refers to x on line 13
-		//x refers to (int x) in line 64
-		this.x = x;
+		//x refers to (int x) in line 77
+		//this.x = x;
 		
 		//this.y refers to y on line 13
-		//y refers to (int y) in line 64
-		this.y = y;
+		//y refers to (int y) in line 77
+		//this.y = y;
 		System.out.println("Mouse click: " + x + "," + y);
 	}
 }
