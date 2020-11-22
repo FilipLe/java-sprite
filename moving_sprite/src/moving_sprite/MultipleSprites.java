@@ -11,6 +11,7 @@ public class MultipleSprites extends SimpleApp{
 	Image car;
 	double[] xValues = new double[100];
 	double[] yValues = new double[100];
+	double[] dxValues = new double[100];
 	double[] dyValues = new double[100];
 	int numCars = 0;
 	
@@ -35,6 +36,15 @@ public class MultipleSprites extends SimpleApp{
 		{
 			screen.drawImage(car, (int)xValues[i], (int)yValues[i]);
 			yValues[i] += dyValues[i];
+			//Move left when x-coord smaller than 0
+			if(xValues[i]<0) 
+			{
+				xValues[i] += dxValues[i];
+			}
+			if(xValues[i]>0) 
+			{
+				xValues[i] -= dxValues[i];
+			}
 			
 			//Make sprite bounce
 			//Check y values, if it hits bottom of screen (y-coord = -168)
@@ -46,6 +56,23 @@ public class MultipleSprites extends SimpleApp{
 				//x 0.8 because in real life, everytime object bounces off, rebound is lower
 			}
 			
+			if(xValues[i] < -168) 
+			{
+				xValues[i] = -168;
+				//Change direction --> change sign of number
+				dxValues[i] = -dxValues[i]*0.8;
+				//x 0.8 because in real life, everytime object bounces off, rebound is lower
+			}
+			
+			if(xValues[i] > 168) 
+			{
+				xValues[i] = 168;
+				//Change direction --> change sign of number
+				dxValues[i] = -dxValues[i]*0.8;
+				//x 0.8 because in real life, everytime object bounces off, rebound is lower
+			}
+			
+			dxValues[i] -= 0.5;
 			dyValues[i] -= 0.5;
 		}
 		
