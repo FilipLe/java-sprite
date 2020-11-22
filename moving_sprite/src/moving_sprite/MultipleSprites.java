@@ -9,8 +9,10 @@ import util.FileUtil;
 
 public class MultipleSprites extends SimpleApp{
 	Image car;
-	int x = 0;
-	int y = 0;
+	double[] xValues = new double[100];
+	double[] yValues = new double[100];
+	double[] dyValues = new double[100];
+	int numCars = 0;
 	
 	
 	public static void main(String[] args) {
@@ -20,6 +22,7 @@ public class MultipleSprites extends SimpleApp{
 	
 	public void main() 
 	{
+		//load sprite
 		Path path = Paths.get("/Users/nguyenle/Desktop/My_Work/Programming/Free_Time/Car/car.png");
 		car = FileUtil.loadImage(path);
 	}
@@ -27,17 +30,34 @@ public class MultipleSprites extends SimpleApp{
 	public void onFrame() 
 	{
 		screen.fill();
-		screen.drawImage(car, x, y);
-		//Add 1 to x every frame
-		x += 1;
-		//Add 1 to y every frame
-		y += 1;
+		
+		for(int i = 0; i < numCars; i++) 
+		{
+			screen.drawImage(car, (int)xValues[i], (int)yValues[i]);
+			yValues[i] += dyValues[i];
+			
+			//Make sprite bounce
+			//Check y values, if it hits bottom of screen (y-coord = -168)
+			if(yValues[i] < -168) 
+			{
+				yValues[i] = -168;
+				//Change direction --> change sign of number
+				dyValues[i] = -dyValues[i]*0.8;
+				//x 0.8 because in real life, everytime object bounces off, rebound is lower
+			}
+			
+			dyValues[i] -= 0.5;
+		}
+		
+		
 	}
 	
+	//Draw more sprites on mouse click position
 	public void onMouseClick(int x, int y) 
 	{
-		this.x = x;
-		this.y = y;
+		xValues[numCars] = x;
+		yValues[numCars] = y;
+		numCars += 1;
 	}
 }
 
