@@ -41,6 +41,8 @@ public class MultipleSprites extends SimpleApp{
 			{
 				xValues[i] += dxValues[i];
 			}
+			
+			//Move right when x-coord greater than 0
 			if(xValues[i]>0) 
 			{
 				xValues[i] -= dxValues[i];
