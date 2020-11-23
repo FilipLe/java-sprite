@@ -36,17 +36,10 @@ public class MultipleSprites extends SimpleApp{
 		{
 			screen.drawImage(car, (int)xValues[i], (int)yValues[i]);
 			yValues[i] += dyValues[i];
-			//Move left when x-coord smaller than 0
-			if(xValues[i]<0) 
-			{
-				xValues[i] += dxValues[i];
-			}
 			
-			//Move right when x-coord greater than 0
-			if(xValues[i]>0) 
-			{
-				xValues[i] -= dxValues[i];
-			}
+			//Move left when x-coord smaller than 0
+			xValues[i] += dxValues[i];
+						
 			
 			//Make sprite bounce
 			//Check y values, if it hits bottom of screen (y-coord = -168)
@@ -74,7 +67,6 @@ public class MultipleSprites extends SimpleApp{
 				//x 0.8 because in real life, everytime object bounces off, rebound is lower
 			}
 			
-			dxValues[i] -= 0.5;
 			dyValues[i] -= 0.5;
 		}
 		
@@ -84,6 +76,8 @@ public class MultipleSprites extends SimpleApp{
 	//Draw more sprites on mouse click position
 	public void onMouseClick(int x, int y) 
 	{
+		//Initial Speed in x-coord
+		dxValues[numCars] = 10;
 		xValues[numCars] = x;
 		yValues[numCars] = y;
 		numCars += 1;
