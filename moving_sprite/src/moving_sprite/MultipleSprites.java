@@ -30,14 +30,16 @@ public class MultipleSprites extends SimpleApp{
 
 	public void onFrame() 
 	{
+		//Make screen white so doesn't leave sprite's trail
 		screen.fill();
 		
 		for(int i = 0; i < numCars; i++) 
 		{
+			//Draw car at mouseclick
 			screen.drawImage(car, (int)xValues[i], (int)yValues[i]);
-			yValues[i] += dyValues[i];
 			
-			//Move left when x-coord smaller than 0
+			//Add movement to y-coord and x-coord
+			yValues[i] += dyValues[i];
 			xValues[i] += dxValues[i];
 						
 			
@@ -51,6 +53,10 @@ public class MultipleSprites extends SimpleApp{
 				//x 0.8 because in real life, everytime object bounces off, rebound is lower
 			}
 			
+			//x direction
+			
+			//If it hits left edge, change the sign of movement in x-direction
+			//Movement to left now becomes movement to right
 			if(xValues[i] < -168) 
 			{
 				xValues[i] = -168;
@@ -59,6 +65,9 @@ public class MultipleSprites extends SimpleApp{
 				//x 0.8 because in real life, everytime object bounces off, rebound is lower
 			}
 			
+			
+			//If it hits right edge, change the sign of movement in x-direction
+			//Movement to right now becomes movement to left
 			if(xValues[i] > 168) 
 			{
 				xValues[i] = 168;
@@ -67,6 +76,7 @@ public class MultipleSprites extends SimpleApp{
 				//x 0.8 because in real life, everytime object bounces off, rebound is lower
 			}
 			
+			//Decrease y velocity as the rebound force is lower that dropping force, due to gravity
 			dyValues[i] -= 0.5;
 		}
 		
